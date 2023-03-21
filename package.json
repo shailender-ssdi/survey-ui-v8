@@ -35,7 +35,7 @@
     "build-dev": "npm run build:preparcel && PARCEL_WORKER_BACKEND=process parcel build --dist-dir dist/$npm_package_name --public-url . --no-optimize",
     "build:parcel": "parcel build --dist-dir dist/survey-ui --public-url .",
     "build:version": "sed -i s/VERSION_PLACEHOLDER/3.0.1/ dist/survey-ui/index.html",
-    "build": "npm run build:preparcel && npm run build:parcel && npm run build:version",
+    "build": "npm run build:preparcel && npm run build:parcel",
     "prestart": "echo \"Website starting at http://localhost:8000/survey-ui\"",
     "start": "http-server -s -o survey-ui -a localhost -p 8000 -c-1 dist",
     "start-no-open": "http-server -a localhost -p 8000 -c-1 dist",
