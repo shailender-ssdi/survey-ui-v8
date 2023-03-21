@@ -1,0 +1,9 @@
+logs/*
+dist
+node_modules/
+!.gitkeep
+.tmp
+.DS_Store
+.idea
+.parcel-cache/
+cypress/videos
