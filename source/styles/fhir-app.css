@@ -153,3 +153,14 @@
 #upload, #search {
   width: 100%;
 }
+.lhc-form .lhc-button {
+  border: 0 none;
+  cursor: pointer;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  background-color: rgba(43, 55, 83, 1) !important;
+}
+.lhc-item-question.lhc-active-row {
+  background-color: lightgray !important;
+}

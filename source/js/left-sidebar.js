@@ -8,6 +8,7 @@ import * as formPane from './form-pane';
 import {fhirService} from './fhir.service.js';
 import {spinner} from './spinner.js';
 import {Dialogs} from './dialogs.js';
+import data from "./foodborne-questionnaire.json"
 
 /**
  *  An element that is the template for the saved QuestionnaireResponse list
@@ -83,6 +84,8 @@ document.getElementById('search').addEventListener('click', ()=>{
 // File Upload button
 const loadFileInput = document.getElementById('loadFileInput');
 document.getElementById('upload').addEventListener('click', ()=>{
+  console.log("-----------------------------------------------------------------");
+  console.log(data);
   loadFileInput.click();
 });
 loadFileInput.addEventListener('change', ()=>{

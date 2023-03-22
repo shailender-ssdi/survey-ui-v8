@@ -57,14 +57,22 @@ body {
 }
 
 .lf-form-table .lf-form-table-row.section-header.level1 {
-  background-color: rgb(67,115,156);
+  background-color:rgba(43, 55, 83, 1);
   color: white;
 }
 
 .lf-form-body .lf-form-table-row.level1.target-show td {
   color: #E8F2FC;
 }
-
+.lhc-form-title {
+  background-color: rgba(43, 55, 83, 1) !important;
+  color: #FFF;
+  overflow: hidden;
+  padding: 8px;
+  margin: 4px 0;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
 md-dialog-content {
   padding: 1em;
 }
@@ -73,6 +81,19 @@ md-dialog-content {
 .lf-form .button-row .lf-float-button {
   margin-bottom: 1em;
 }
+
+/* Styles for the NIH/NLM/LHC logo */
+#lhc-logo {
+  background-color: rgba(43, 55, 83, 1);
+  padding: 2px 0 5px 5px;
+  overflow: hidden;
+}
+#lhc-logo img {
+  height: 35px;
+  width: auto;
+  margin-bottom: -1px;
+}
+/* End styles for the NIH/NLM/LHC logo */
 
 /* Styles for the header */
 body {
@@ -83,14 +104,14 @@ body {
   font-size: 12px;
   font-family: 'Droid Sans',Arial,Helvetica,sans-serif;
   color: #202020;
-  border-top: 2px solid transparent;
-  border-bottom: 7px solid #17b4e3;
+  border-top: 2px solid rgba(43, 55, 83, 1);
+  border-bottom: 7px solid rgba(43, 55, 83, 1);
   line-height: normal;
   padding-bottom: 10px;
 }
 #logo {
   position: relative;
-  margin-top: 4px;
+  top: 4px;
   font-size: 18px;
   display: block;
   margin-bottom: 2px;
@@ -104,17 +125,13 @@ body {
   float: left;
   margin-right: 5px;
   margin-left: 5px;
-  border-right: 1px solid #0BACB6;
+  border-right: 1px solid rgba(43, 55, 83, 1);
   padding-right: 5px;
-  height: 81px;
-  width: 81px;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  display: block;
 }
 
 #siteNameBox {
-  margin-top: 25px;
+  margin-top: 2.2em;
 }
 #siteName {
   font-size: 300%;
@@ -129,3 +146,64 @@ body {
 }
 
 /* End of styles for the header */
+/* Styles for the footer */
+#fine-print {
+  border-top: 2px solid rgba(43, 55, 83, 1);
+  clear: left;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 10px;
+}
+ul.horz-list li {
+  list-style-type: none;
+  display: inline;
+  padding-left: 8px;
+  padding-right: 10px;
+  border-right: 1px solid #999;
+}
+ul.horz-list li.last-item {
+  border-right: none;
+}
+#usagov {
+  vertical-align: bottom;
+}
+/* Add some space above the footer.  For some reason adding a margin-top
+   does not work, perhaps because of a float, so instead we add padding to the
+   floated element.
+ */
+.col-md-9 {
+  padding-bottom: 1em;
+}
+
+#btn-save-as {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: rgb(255, 255, 255);
+  background-color: rgb(43, 55, 83);
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+}
+/* End of styles for the footer */
