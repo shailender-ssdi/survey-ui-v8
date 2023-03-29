@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel hide">
   <div class="panel-body">
     <input type="file" id="loadFileInput" accept="application/json" class="hide" />
 
@@ -7,15 +7,10 @@
        class="btn btn-default btn-sm btn-success"
        title="Upload a file."><span class="glyphicon glyphicon-upload"></span><span
        class="lf-nav-button">Upload</span></a></div>
-    <p>If you do not have a Questionnaire of your own to upload, you can try
-     downloading one of our <a href=
-     "https://raw.githubusercontent.com/lhncbc/lforms-fhir-app/master/cypress/fixtures/R4/weight-height-questionnaire.json"
-     target="_blank" rel="noopener noreferrer" id=sampleQ>samples</a> (saving
-     it to file, and then uploading it here).</p>
   </div>
 </div>
 
-<div class="panel-group" id="listAccordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group hide" id="listAccordion" role="tablist" aria-multiselectable="true">
 
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading-one">

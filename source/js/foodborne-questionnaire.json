@@ -1,0 +1,246 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "5770433",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2022-04-12T17:50:10.000-04:00",
+    "source": "#vv975vU0TcqbGkSY",
+    "profile": [ "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire|2.7" ],
+    "tag": [ {
+      "code": "lformsVersion: 30.1.3"
+    } ]
+  },
+  "url": "https://hl7.org",
+  "version": "1",
+  "name": "Foodborne Questionnaire",
+  "title": "Foodborne Questionnaire",
+  "status": "draft",
+  "experimental": false,
+  "subjectType": [ "Person" ],
+  "publisher": "SSDI",
+  "description": "Foodborne Preliminary Investigation Survey",
+  "purpose": "Data collection foodborne outbreak",
+  "effectivePeriod": {
+    "start": "2022-04-10T07:00:00.000Z",
+    "end": "2023-04-28T07:00:00.000Z"
+  },
+  "item": [ {
+    "linkId": "1",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "First Name"
+    } ],
+    "text": "First Name",
+    "type": "string",
+    "required": true
+  }, {
+    "linkId": "2",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Last Name"
+    } ],
+    "text": "Last Name",
+    "type": "string",
+    "required": true
+  }, {
+    "linkId": "3",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Email address"
+    } ],
+    "text": "Email address",
+    "type": "string",
+    "required": false
+  }, {
+    "linkId": "4",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Date of Birth"
+    } ],
+    "text": "Date of Birth",
+    "type": "date",
+    "required": true
+  }, {
+    "linkId": "5",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Did you experience any GI symptoms?"
+    } ],
+    "text": "Did you experience any GI symptoms?",
+    "type": "string",
+    "required": true
+  }, {
+    "extension": [ {
+      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "system": "http://hl7.org/fhir/questionnaire-item-control",
+          "code": "drop-down",
+          "display": "Drop down"
+        } ],
+        "text": "Drop down"
+      }
+    } ],
+    "linkId": "6",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Check all symptoms that you experienced"
+    } ],
+    "text": "Check all symptoms that you experienced",
+    "type": "open-choice",
+    "required": false,
+    "repeats": true,
+    "answerOption": [ {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "422587007",
+        "display": "Nausea"
+      }
+    }, {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "16932000",
+        "display": "Vomiting"
+      }
+    }, {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "62315008",
+        "display": "Diarrhea"
+      }
+    }, {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "95545007",
+        "display": "Bloody Diarrhea"
+      }
+    }, {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "21522001",
+        "display": "Abdominal Pain"
+      }
+    }, {
+      "valueCoding": {
+        "system": "SNOMED-CT",
+        "code": "386661006",
+        "display": "Fever"
+      }
+    }, {
+      "valueCoding": {
+        "system": "LOCAL",
+        "code": "OTH",
+        "display": "Other"
+      }
+    } ]
+  }, {
+    "linkId": "7",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "What date did you first start experiencing symptoms?"
+    } ],
+    "text": "What date did you first start experiencing symptoms?",
+    "type": "date",
+    "required": false
+  }, {
+    "linkId": "9",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Did you submit a stool sample to any laboratory?"
+    } ],
+    "text": "Did you submit a stool sample to any laboratory?",
+    "type": "boolean",
+    "required": true
+  }, {
+    "linkId": "9",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "Itemcode",
+      "display": "In the week before your symptoms started, did you eat out at any restaurants?"
+    } ],
+    "text": "In the week before your symptoms started, did you eat out at any restaurants?",
+    "type": "string",
+    "required": true,
+    "item": [ {
+      "linkId": "9.1",
+      "code": [ {
+        "system": "https://hl7.org",
+        "code": "ItemCode",
+        "display": "Add restaurant names and their addresses"
+      } ],
+      "text": "Add restaurant names and their addresses",
+      "type": "text",
+      "required": false
+    } ]
+  }, {
+    "linkId": "10",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "In the week before your symptoms started, did you purchase and consume food from any grocery stores?"
+    } ],
+    "text": "In the week before your symptoms started, did you purchase and consume food from any grocery stores?",
+    "type": "string",
+    "required": false,
+    "item": [ {
+      "linkId": "10.1",
+      "code": [ {
+        "system": "https://www.hl7.org/fhir/codesystem-nhin-purposeofuse.html",
+        "code": "ItemCode",
+        "display": "Add grocery store names and addresses"
+      } ],
+      "text": "Add grocery store names and addresses",
+      "type": "text",
+      "required": false
+    } ]
+  }, {
+    "linkId": "11",
+    "code": [ {
+      "system": "https://www.hl7.org/fhir/codesystem-nhin-purposeofuse.html",
+      "code": "ItemCode",
+      "display": "Please describe as much as you can remember about what you ate in the five days prior to yor symptoms starting"
+    } ],
+    "text": "Please describe as much as you can remember about what you ate in the five days prior to yor symptoms starting",
+    "type": "text",
+    "required": false
+  }, {
+    "linkId": "12",
+    "code": [ {
+      "system": "https://www.hl7.org/fhir/codesystem-nhin-purposeofuse.html",
+      "code": "ItemCode",
+      "display": "Do you have any pets or contact with an animals , including at a farm or petting zoo?"
+    } ],
+    "text": "Do you have any pets or contact with an animals , including at a farm or petting zoo?",
+    "type": "string",
+    "required": false
+  }, {
+    "linkId": "13",
+    "code": [ {
+      "system": "https://hl7.org",
+      "code": "ItemCode",
+      "display": "Do you have any water contact (Pool, Lake, Water Park)?"
+    } ],
+    "text": "Do you have any water contact (Pool, Lake, Water Park)?",
+    "type": "string",
+    "required": false,
+    "item": [ {
+      "linkId": "13.1",
+      "code": [ {
+        "system": "https://hl7.org",
+        "code": "ItemCode",
+        "display": "Please describe water contact"
+      } ],
+      "text": "Please describe water contact",
+      "type": "text",
+      "required": false
+    } ]
+  } ]
+}

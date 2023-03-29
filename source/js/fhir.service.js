@@ -12,6 +12,10 @@ thisService.currentUser = null;
 // Currently selected patient
 thisService.currentPatient = null;
 
+thisService.currentSubject = null;
+
+thisService.currentQuestionnaireId = null;
+
 // the fhir server connection (a fhirclient/client-js instance)
 thisService.fhir = null;
 
@@ -221,6 +225,22 @@ thisService.getCurrentPatient = function() {
   return thisService.currentPatient;
 };
 
+thisService.setCurrentSubject = function(subject) {
+  thisService.currentSubject = subject;
+};
+
+thisService.getCurrentSubject = function() {
+  return thisService.currentSubject;
+};
+
+thisService.setCurrentQuestionnaireId = function(currentQuestionnaireId) {
+  thisService.currentQuestionnaireId = currentQuestionnaireId;
+};
+
+thisService.getCurrentQuestionnaireId = function() {
+  return thisService.currentQuestionnaireId;
+};
+
 
 /**
  * Get the patient's display name
@@ -288,7 +308,8 @@ thisService.searchPatientByName = function(searchText, resultCount) {
   // md-autocomplete directive requires a promise to be returned
   return fhirSearch({
     type: "Patient",
-    query: {name: searchText.split(/\s+/), _count: resultCount}
+    query: {name: searchText.split(/\s+/), _count: resultCount},
+    headers: {'Cache-Control': 'no-cache'}
   }).then(function(bundle) {
     // Return results in autocomplete-lhc format
     const rtn = [bundle.total];
@@ -324,7 +345,8 @@ thisService.searchPatientByName = function(searchText, resultCount) {
 thisService.searchQuestionnaire = function(searchText, resultCount) {
   return fhirSearch({
     type: "Questionnaire",
-    query: {title: searchText, _count: resultCount}
+    query: {title: searchText, _count: resultCount},
+    headers: {'Cache-Control': 'no-cache'}
   }).then(function(bundle) {
     // Return results in autocomplete-lhc format
     const rtn = [bundle.total];
@@ -430,6 +452,9 @@ thisService.getAllQRByPatientId = function(pId) {
       _include: 'QuestionnaireResponse:questionnaire',
       _sort: '-_lastUpdated',
       _count: 5
+    },
+    headers: {
+      'Cache-Control': 'no-cache'
     }
   });
 };
@@ -467,6 +492,9 @@ thisService.getAllQ = function() {
     query: {
       _sort: '-_lastUpdated',
       _count: 10
+    },
+    headers: {
+      'Cache-Control': 'no-cache'
     }
   });
 };
@@ -583,6 +611,9 @@ thisService.deleteQRespAndObs = function(resId) {
       type: 'Observation',
       query: {
         'derived-from': 'QuestionnaireResponse/'+resId,
+      },
+      headers: {
+        'Cache-Control': 'no-cache'
       }
     }).then(function(bundle) {
       var thenPromise;

@@ -14,7 +14,7 @@
 .spinner > div {
   width: 40px;
   height: 40px;
-  background-color: orange;
+  background-color: rgba(43, 55, 83, 1) !important;
 
   border-radius: 100%;
   display: inline-block;

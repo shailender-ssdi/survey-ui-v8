@@ -1,6 +1,9 @@
 import {fhirService} from './fhir.service.js';
 import {Dialogs} from './dialogs.js';
 import * as leftSideBar from './left-sidebar.js';
+import * as formPane from './form-pane';
+import data from './foodborne-questionnaire.json';
+import {config} from './config.js';
 
 /**
  * Get the connection to FHIR server and the selected patient
@@ -10,7 +13,18 @@ import * as leftSideBar from './left-sidebar.js';
  */
 function establishFHIRContext() {
   const params = (new URL(document.location)).searchParams;
-  const fhirServerURL = params.get('server');
+  let fhirServerURL = params.get('server');
+  let reviewQuestionnaire = params.get('reviewQuestionnaire');
+  //hardcode fhirServerUtl instead of getting it from
+  //fhirServerURL = config.fhirServerUrl; //for now comment to get inside if loop
+  let submitElement = document.getElementById("createQRToFhir");
+  if(reviewQuestionnaire) { //hide submit button when reviewing the questionnaire
+    if(submitElement)
+    submitElement.style.visibility = "hidden";
+  } else {
+    if(submitElement)
+    submitElement.style.visibility = "visible";
+  }
   if (fhirServerURL) {
     setServerAndPickPatient({url:fhirServerURL});
   }
@@ -74,12 +88,61 @@ function selectServerAndPatient() {
     // support IE 11 because of its dependency on Angular, so there I think
     // there is no need to support this feature here for IE 11.
     fhirServerURL = (new URLSearchParams(window.location.search)).get('server');
+    fhirServerURL = config.fhirServerUrl;
   }
+  fhirServerURL = config.fhirServerUrl;
   if (fhirServerURL) {
     setServerAndPickPatient({url: fhirServerURL});
+    let questionnaireId = (new URLSearchParams(window.location.search)).get('questionnaireId');
+    let subjectId = (new URLSearchParams(window.location.search)).get('subjectId');
+    let questionnaireResponseId = (new URLSearchParams(window.location.search)).get('questionnaireResponseId');
+    console.log("questionnaireId : " + questionnaireId);
+    console.log("questionnaireResponseId : " + questionnaireResponseId);
+    console.log("subjectId : " + subjectId);
+    if(questionnaireId) {
+      console.log("Show Questionnaire for QuestionnaireId: " + questionnaireId + " and SubjectId : " + subjectId) ;
+      var subject =  '{"identifier": {"type": {"text": "' + subjectId + '"}}}';
+      fhirService.setCurrentSubject(JSON.parse(subject));
+      fhirService.setCurrentQuestionnaireId(questionnaireId);
+      fhirService.getFhirResourceById('Questionnaire', questionnaireId)
+      .then(function(questionnaire) {
+        formPane.showForm(questionnaire, {prepopulate: true});
+      }).catch(function(error) {
+        console.error(error);
+        if(error.data)
+        console.error(error.data);
+      });
+    }else if(questionnaireResponseId) {
+      console.log("Show Questionnaire Response for QuestionnaireResponseId: " + questionnaireResponseId) ;
+      fhirService.getFhirResourceById('QuestionnaireResponse', questionnaireResponseId)
+      .then(function(questionnaireResponse) {
+        let questionnaireReq = null;
+        questionnaireId = questionnaireResponse.questionnaire.replace("Questionnaire/", "");
+        console.log("Retrieved questionnaireId ==>> " + questionnaireId);
+        fhirService.getFhirResourceById('Questionnaire', questionnaireId)
+            .then(function(questionnaire) {
+              console.log("Retrieved questionnaire. Show form.");
+              formPane.showForm(questionnaire, {prepopulate: true}, true, questionnaireResponse);
+            }).catch(function(error) {
+              console.error("Error retrieving Questionnaire. " + error);
+              if(error.data)
+              console.error(error.data);
+            });
+        //formPane.showForm(questionnaireReq, {prepopulate: true}, true, questionnaireResponse);
+      }).catch(function(error) {
+        console.error("Error retrieving Questionnaire Response. : " + error);
+        if(error.data)
+        console.error("Error QRID Data: " + error.data);
+      });
+    }
+     else {
+      console.log("pass param Questionnaire ID and SubjectId in the url");
+      formPane.showForm(data, {prepopulate: true});
+    }
   }
   else {
-    Dialogs.showFHIRServerPicker();
+    alert("No FHIR server. Please configure FHIR server")
+   // Dialogs.showFHIRServerPicker();
   }
 }
 
@@ -95,19 +158,30 @@ function selectServerAndPatient() {
  *  successful.
  */
 function setServerAndPickPatient(fhirServer, callback) {
-  showWaitMsg('Contacting FHIR server.  Please wait...');
+  //I do not need to show the popup dialogue as FHIR server is hardcoded
+  //showWaitMsg('Contacting FHIR server.  Please wait...');
   fhirService.setNonSmartServer(fhirServer, function(success) {
     if (callback)
       callback(success); // "success" is a boolean
     if (success) {
-      Dialogs.showPatientPicker().then((patientResource) => {
+      let patientId = "pat-13964";
+      /*fhirService.getFhirResourceById("Patient", patientId)
+      .then(function(patientResource) {
+      if (patientResource) {
+        fhirService.setCurrentPatient(patientResource);
+        fhirService.setNonSmartServerPatient(patientResource.id);
+        leftSideBar.initSideBarLists();
+        //updateUserAndPatientBanner(); //Marla does not want to show patient banner
+      }
+      });
+/*       Dialogs.showPatientPicker().then((patientResource) => {
         if (patientResource) {
           fhirService.setCurrentPatient(patientResource);
           fhirService.setNonSmartServerPatient(patientResource.id);
           leftSideBar.initSideBarLists();
           updateUserAndPatientBanner();
         }
-      });
+      }); */
     }
     else {
       showErrorMsg('Could not establish communication with the FHIR server at ' +
