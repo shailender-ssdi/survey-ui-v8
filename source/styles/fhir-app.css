@@ -164,3 +164,70 @@
 .lhc-item-question.lhc-active-row {
   background-color: lightgray !important;
 }
+.lhc-item.lhc-tree-line:before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  border-top: 2px solid rgba(43, 55, 83, 1) !important;
+  top: 14px;
+  width: 12px;
+  height: 0;
+}
+.lhc-item.lhc-tree-line:after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  border-left: 2px solid rgba(43, 55, 83, 1) !important;
+  height: 100%;
+  width: 0;
+  top: 0;
+}
+
+element.style {
+}
+.lhc-form .lhc-help-button i, .lhc-form .lf-control-button i, .lhc-form .lhc-copyright-button i {
+    font-size: medium;
+}
+.anticon {
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    vertical-align: -0.125em;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.anticon, .anticon svg {
+    display: inline-block;
+}
+.anticon, button, select {
+    text-transform: none;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+i {
+    font-style: italic;
+}
+.lhc-form .lhc-help-button, .lhc-form .lf-control-button, .lhc-form .lhc-copyright-button {
+    padding: 0;
+    margin-right: 2px;
+    margin-left: 2px;
+    vertical-align: middle;
+    background-color: transparent;
+    color: rgba(43, 55, 83, 1) !important;
+    border: none;
+}
+.lhc-form .lhc-de-label span.lf-sn {
+  border-radius: 4px;
+  background-color: rgba(43, 55, 83, 1) !important;
+  font-weight: 700;
+  color: #fff;
+  padding: 4px 8px;
+  margin-right: 4px;
+}
