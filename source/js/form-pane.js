@@ -65,12 +65,10 @@ document.getElementById('saveAsQRExtracted').addEventListener('click',
   ()=>saveAsQRExtracted());
 
 // "Save" button
-document.getElementById('btn-save').addEventListener('click',
-  ()=>updateQRToFhir());
+//document.getElementById('btn-save').addEventListener('click', ()=>updateQRToFhir());
 
 // "Delete" button
-document.getElementById('btn-delete').addEventListener('click',
-  ()=>deleteQRObs());
+//document.getElementById('btn-delete').addEventListener('click', ()=>deleteQRObs());
 
 
 /**
