@@ -2,7 +2,6 @@ import {fhirService} from './fhir.service.js';
 import {Dialogs} from './dialogs.js';
 import * as leftSideBar from './left-sidebar.js';
 import * as formPane from './form-pane';
-import data from './foodborne-questionnaire.json';
 import {config} from './config.js';
 
 /**
@@ -137,7 +136,6 @@ function selectServerAndPatient() {
     }
      else {
       console.log("pass param Questionnaire ID and SubjectId in the url");
-      formPane.showForm(data, {prepopulate: true});
     }
   }
   else {
