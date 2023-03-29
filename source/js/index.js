@@ -94,7 +94,16 @@ function selectServerAndPatient() {
   if (fhirServerURL) {
     setServerAndPickPatient({url: fhirServerURL});
     let questionnaireId = (new URLSearchParams(window.location.search)).get('questionnaireId');
+    let subjectId = (new URLSearchParams(window.location.search)).get('subjectId');
+    let questionnaireResponseId = (new URLSearchParams(window.location.search)).get('questionnaireResponseId');
+    console.log("questionnaireId : " + questionnaireId);
+    console.log("questionnaireResponseId : " + questionnaireResponseId);
+    console.log("subjectId : " + subjectId);
     if(questionnaireId) {
+      console.log("Show Questionnaire for QuestionnaireId: " + questionnaireId + " and SubjectId : " + subjectId) ;
+      var subject =  '{"identifier": {"type": {"text": "' + subjectId + '"}}}';
+      fhirService.setCurrentSubject(JSON.parse(subject));
+      fhirService.setCurrentQuestionnaireId(questionnaireId);
       fhirService.getFhirResourceById('Questionnaire', questionnaireId)
       .then(function(questionnaire) {
         formPane.showForm(questionnaire, {prepopulate: true});
@@ -103,8 +112,31 @@ function selectServerAndPatient() {
         if(error.data)
         console.error(error.data);
       });
-    } else {
-      console.log("pass param Questionnaire ID in the url");
+    }else if(questionnaireResponseId) {
+      console.log("Show Questionnaire Response for QuestionnaireResponseId: " + questionnaireResponseId) ;
+      fhirService.getFhirResourceById('QuestionnaireResponse', questionnaireResponseId)
+      .then(function(questionnaireResponse) {
+        let questionnaireReq = null;
+        questionnaireId = questionnaireResponse.questionnaire.replace("Questionnaire/", "");
+        console.log("Retrieved questionnaireId ==>> " + questionnaireId);
+        fhirService.getFhirResourceById('Questionnaire', questionnaireId)
+            .then(function(questionnaire) {
+              console.log("Retrieved questionnaire. Show form.");
+              formPane.showForm(questionnaire, {prepopulate: true}, true, questionnaireResponse);
+            }).catch(function(error) {
+              console.error("Error retrieving Questionnaire. " + error);
+              if(error.data)
+              console.error(error.data);
+            });
+        //formPane.showForm(questionnaireReq, {prepopulate: true}, true, questionnaireResponse);
+      }).catch(function(error) {
+        console.error("Error retrieving Questionnaire Response. : " + error);
+        if(error.data)
+        console.error("Error QRID Data: " + error.data);
+      });
+    }
+     else {
+      console.log("pass param Questionnaire ID and SubjectId in the url");
       formPane.showForm(data, {prepopulate: true});
     }
   }
@@ -133,7 +165,7 @@ function setServerAndPickPatient(fhirServer, callback) {
       callback(success); // "success" is a boolean
     if (success) {
       let patientId = "pat-13964";
-      fhirService.getFhirResourceById("Patient", patientId)
+      /*fhirService.getFhirResourceById("Patient", patientId)
       .then(function(patientResource) {
       if (patientResource) {
         fhirService.setCurrentPatient(patientResource);

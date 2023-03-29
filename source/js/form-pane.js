@@ -113,6 +113,23 @@ export function showForm(formDef, addOptions, onServer, savedQR) {
       }
     }
   }
+  if (formDef.resourceType === 'QuestionnaireResponse') {
+    // Convert it to the LForms format
+    const fhirVersion = onServer ? fhirService.fhirVersion : undefined;
+    formDef = LForms.Util.convertFHIRQuestionnaireToLForms(formDef, fhirVersion);
+    if (true) {
+      var newFormData = (new LForms.LFormsData(formDef));
+      try {
+        formDef = LForms.Util.mergeFHIRDataIntoLForms('QuestionnaireResponse', savedQR, newFormData, fhirVersion);
+      }
+      catch (e) {
+        showError('Sorry.  Could not process that '+
+          'QuestionnaireResponse.  See the console for details.', e);
+        formDef = null;
+        rtn = Promise.reject(e);
+      }
+    }
+  }
 
   if (formDef) {
     if (onServer) {
@@ -259,12 +276,19 @@ async function createQRToFhir() {
     fhirService.fhirVersion, formContainer_, {
     subject: fhirService.getCurrentPatient()})
 
+  qr.subject = fhirService.getCurrentSubject();
+  qr.questionnaire = 'Questionnaire/' + fhirService.getCurrentQuestionnaireId();
+  console.log("Questionnaire Response : " + JSON.stringify(qr));
+
+  var quesDataString = '{"id": "'+fhirService.getCurrentQuestionnaireId()+'"}';
+  var quesData = JSON.parse(quesDataString);
   // add an author if in SMART environment
   if (fhirService.getCurrentUser() && !qr.author) {
     qr.author = fhirService.getCurrentUserReference();
   }
   try {
     let saveResults;
+    /*
     if (originalQDef_) { // Questionnaire is already on server
       saveResults = [await fhirService.createQR(qr, originalQDef_)];
       notifyQRSaveOrDelete();
@@ -286,7 +310,10 @@ async function createQRToFhir() {
       }
       notifyQRSaveOrDelete();
       notifyQSaveOrDelete();
-    }
+    } */
+    saveResults = [await fhirService.createQR(qr, quesData)];
+    notifyQRSaveOrDelete();
+    saveDeleteVisibility(true);
     updateCurrentQQRRefs(saveResults);
     Dialogs.showSaveResultsDialog(saveResults);
   }

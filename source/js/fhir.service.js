@@ -12,6 +12,10 @@ thisService.currentUser = null;
 // Currently selected patient
 thisService.currentPatient = null;
 
+thisService.currentSubject = null;
+
+thisService.currentQuestionnaireId = null;
+
 // the fhir server connection (a fhirclient/client-js instance)
 thisService.fhir = null;
 
@@ -219,6 +223,22 @@ thisService.setCurrentPatient = function(patient) {
  */
 thisService.getCurrentPatient = function() {
   return thisService.currentPatient;
+};
+
+thisService.setCurrentSubject = function(subject) {
+  thisService.currentSubject = subject;
+};
+
+thisService.getCurrentSubject = function() {
+  return thisService.currentSubject;
+};
+
+thisService.setCurrentQuestionnaireId = function(currentQuestionnaireId) {
+  thisService.currentQuestionnaireId = currentQuestionnaireId;
+};
+
+thisService.getCurrentQuestionnaireId = function() {
+  return thisService.currentQuestionnaireId;
 };
 
 

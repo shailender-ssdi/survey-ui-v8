@@ -5,7 +5,7 @@
 
 /* Initial msg */
 #initialMsg {
-  background-color: #458ac5;
+  background-color: rgba(43, 55, 83, 1) !important;
   color: white;
   font-size: 24px;
   height: 60%;
