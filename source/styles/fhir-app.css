@@ -231,3 +231,6 @@ i {
   padding: 4px 8px;
   margin-right: 4px;
 }
+.ant-switch-checked {
+  background: rgba(43, 55, 83, 1) !important;
+}
