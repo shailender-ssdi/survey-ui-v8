@@ -97,12 +97,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 id="saveResultsTitle" class="modal-title">Save Results</h4>
+        <h4 id="saveResultsTitle" class="modal-title">Submission successful!</h4>
       </div>
       <div id="saveResultsBody" class="modal-body">
-        <div id="saveResultsStatus"></div>
-        <ul id="saveResultsList"></ul>
-        <a id="saveResultsDetailsLink" href="javascript:void(0)">Details</a>
+        <div id="saveResultsStatus" style="display: none"></div>
+        <div id="saveResultsStatusNew">Thank you, your response has been recorded.</div>
+        <ul id="saveResultsList" style="display: none"></ul>
+        <a id="saveResultsDetailsLink"  style="display: none" href="javascript:void(0)">Details</a>
         <pre id="saveResultsDetails" style="display: none"></pre>
       </div>
       <div class="modal-footer">
