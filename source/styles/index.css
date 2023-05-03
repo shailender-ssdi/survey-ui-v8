@@ -57,7 +57,7 @@ body {
 }
 
 .lf-form-table .lf-form-table-row.section-header.level1 {
-  background-color:rgba(43, 55, 83, 1);
+  background-color: #0055a1;
   color: white;
 }
 
@@ -65,7 +65,7 @@ body {
   color: #E8F2FC;
 }
 .lhc-form-title {
-  background-color: rgba(43, 55, 83, 1) !important;
+  background-color: #0055a1 !important;
   color: #FFF;
   overflow: hidden;
   padding: 8px;
@@ -84,7 +84,7 @@ md-dialog-content {
 
 /* Styles for the NIH/NLM/LHC logo */
 #lhc-logo {
-  background-color: rgba(43, 55, 83, 1);
+  background-color: #0055a1;
   padding: 2px 0 5px 5px;
   overflow: hidden;
 }
@@ -104,10 +104,18 @@ body {
   font-size: 12px;
   font-family: 'Droid Sans',Arial,Helvetica,sans-serif;
   color: #202020;
-  border-top: 2px solid rgba(43, 55, 83, 1);
-  border-bottom: 7px solid rgba(43, 55, 83, 1);
+  border-top: 2px solid ;
+  border-bottom: 7px solid #0055a1;
   line-height: normal;
   padding-bottom: 10px;
+}
+.page-header {
+  background-image: url('../images/header-bg.png');
+  background-size: cover;
+  top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 70px;
 }
 #logo {
   position: relative;
@@ -125,7 +133,7 @@ body {
   float: left;
   margin-right: 5px;
   margin-left: 5px;
-  border-right: 1px solid rgba(43, 55, 83, 1);
+  border-right: 1px solid #0055a1;
   padding-right: 5px;
   display: block;
 }
@@ -148,7 +156,7 @@ body {
 /* End of styles for the header */
 /* Styles for the footer */
 #fine-print {
-  border-top: 2px solid rgba(43, 55, 83, 1);
+  border-top: 2px solid #0055a1;
   clear: left;
   text-align: center;
   font-size: 12px;
@@ -203,7 +211,7 @@ ul.horz-list li.last-item {
   border-radius: 4px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   color: rgb(255, 255, 255);
-  background-color: rgb(43, 55, 83);
+  background-color: #0055a1;
   box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
 }
 /* End of styles for the footer */

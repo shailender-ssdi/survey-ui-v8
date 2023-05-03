@@ -56,7 +56,7 @@
   background-color: #FAFAFA;
 }
 .lf-message {
-  background-color: rgba(43, 55, 83, 1) !important;
+  background-color: #0055a1 !important;
   color: white;
   font-size: 24px;
   height: 100px;
@@ -159,7 +159,7 @@
   overflow: visible;
   padding: 0;
   position: relative;
-  background-color: rgba(43, 55, 83, 1) !important;
+  background-color: #0055a1 !important;
 }
 .lhc-item-question.lhc-active-row {
   background-color: lightgray !important;
@@ -168,7 +168,7 @@
   content: "";
   position: absolute;
   left: 12px;
-  border-top: 2px solid rgba(43, 55, 83, 1) !important;
+  border-top: 2px solid #0055a1 !important;
   top: 14px;
   width: 12px;
   height: 0;
@@ -177,7 +177,7 @@
   content: "";
   position: absolute;
   left: 12px;
-  border-left: 2px solid rgba(43, 55, 83, 1) !important;
+  border-left: 2px solid #0055a1 !important;
   height: 100%;
   width: 0;
   top: 0;
@@ -220,17 +220,17 @@ i {
     margin-left: 2px;
     vertical-align: middle;
     background-color: transparent;
-    color: rgba(43, 55, 83, 1) !important;
+    color: #0055a1 !important;
     border: none;
 }
 .lhc-form .lhc-de-label span.lf-sn {
   border-radius: 4px;
-  background-color: rgba(43, 55, 83, 1) !important;
+  background-color: #0055a1 !important;
   font-weight: 700;
   color: #fff;
   padding: 4px 8px;
   margin-right: 4px;
 }
 .ant-switch-checked {
-  background: rgba(43, 55, 83, 1) !important;
+  background: #0055a1 !important;
 }
