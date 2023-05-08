@@ -220,6 +220,9 @@ ul.horz-list li.last-item {
 	line-height: 3em;
 	color: #fff;
 	border-top: 4px solid #ffc800;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
 }
 .footerLinks a {
 	color: #fff;
