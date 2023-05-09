@@ -103,6 +103,28 @@ function selectServerAndPatient() {
       var subject =  '{"identifier": {"type": {"text": "' + subjectId + '"}}}';
       fhirService.setCurrentSubject(JSON.parse(subject));
       fhirService.setCurrentQuestionnaireId(questionnaireId);
+
+      // Check if given subject in request already have questionnaire response recorded. Disable submit button if survey already submitted.
+      fhirService.getFhirResource('QuestionnaireResponse?questionnaire='+questionnaireId)
+      .then(function(questionnaireResponse) {
+        //console.log("===>>>>> " + questionnaireResponse);
+        if(questionnaireResponse.entry != null && questionnaireResponse.entry.length > 0){
+          for (let i=0, iLen=questionnaireResponse.entry.length; i<iLen; i++) {
+            //console.log("===>>>>> number of subjects responded : " + iLen);
+            var subject = questionnaireResponse.entry[i].resource.subject;
+            if(subject != null && subject.identifier.type.text == subjectId){
+              console.log("Subject already submitted survey. Disable submit button");
+              let submitElement = document.getElementById("createQRToFhir");
+              submitElement.style.visibility = "hidden"; // make submit button disabled
+            }
+          }
+        }
+      }).catch(function(error) {
+        console.error(error);
+        if(error.data)
+        console.error(error.data);
+      });
+
       fhirService.getFhirResourceById('Questionnaire', questionnaireId)
       .then(function(questionnaire) {
         formPane.showForm(questionnaire, {prepopulate: true});
