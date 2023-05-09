@@ -481,6 +481,10 @@ thisService.getFhirResourceById = function(resType, resId) {
   return thisService.fhir.request(resType+'/'+encodeURIComponent(resId));
 };
 
+thisService.getFhirResource = function(resType) {
+  return thisService.fhir.request(resType);
+};
+
 
 /**
  *  Gets (a first page of) all Questionnaire resources

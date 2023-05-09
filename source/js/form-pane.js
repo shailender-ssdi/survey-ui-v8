@@ -313,6 +313,8 @@ async function createQRToFhir() {
     notifyQRSaveOrDelete();
     saveDeleteVisibility(true);
     updateCurrentQQRRefs(saveResults);
+    let submitElement = document.getElementById("createQRToFhir");
+    submitElement.style.visibility = "hidden"; // make submit button disabled
     Dialogs.showSaveResultsDialog(saveResults);
   }
   catch(error) {
